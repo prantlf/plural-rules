@@ -1,0 +1,19 @@
+/* global it, expect */
+
+import data from '../src/data'
+
+const { rules, cardinals } = data
+
+it('are exported as an object', () => {
+  expect(typeof cardinals === 'object').toBeTruthy()
+})
+
+it('all locales point to a valid rule index', () => {
+  for (let locale in cardinals) {
+    const forms = cardinals[locale]
+    for (let form in forms) {
+      const rule = forms[form]
+      expect(typeof rules[rule]).toEqual('string')
+    }
+  }
+})

@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+
+'use strict'
+
+const commander = require('commander')
+const { createPluralData } = require('../util/data-creator')
+const pkg = require('../package.json')
+
+commander.version(pkg.version)
+  .description('Generates plural rules and forms for selected locales.')
+  .usage('[options] <locale> [<locale> ...]')
+  .option('-a, --all-locales', 'incudes all available locales')
+  .option('-c, --as-cjs-module', 'format the plural data as a CommonJS module')
+  .option('-d, --as-amd-module', 'format the plural data as an AMD module')
+  .option('-m, --as-module', 'format the plural data as an ES6 module')
+  .option('-n, --umd-name <name>', 'UMD global export name, if not "pluralData"')
+  .option('-o, --output-file <file>', 'write the plural data to a file')
+  .option('-p, --packed', 'pack the plural rules in plural forms')
+  .option('-u, --as-umd-module', 'format the plural data as an UMD module')
+  .option('-v, --include-version', 'include version of the CLDR source')
+
+commander.on('--help', function () {
+  console.log()
+  console.log('  Plural data are printed on the standard output as JSON by default.')
+  console.log('  Packed plural data must be used as a single module; not for merging.')
+  console.log()
+  console.log('  Examples:')
+  console.log()
+  console.log('    $ create-pural-data cs')
+  console.log('    $ create-plural-data -mpv -o custom-data.js en de cs pl hu ru')
+})
+
+commander.parse(process.argv)
+const locales = commander.args
+if (!locales.length && !commander.allLocales) {
+  commander.help()
+}
+
+const {
+  asModule, asCjsModule, asAmdModule, asUmdModule, umdName,
+	packed, includeVersion, outputFile
+} = commander
+createPluralData({
+  locales, asModule, asCjsModule, asAmdModule, asUmdModule, umdName,
+  packed, includeVersion, outputFile
+})
+.then(pluralData => {
+  if (!outputFile) {
+    console.log(pluralData)
+  }
+})
+.catch(error => {
+  console.error(error.message)
+  process.exitCode = 1
+})
