@@ -13,7 +13,7 @@ before_install:
   - npm i -g npm
 after_success:
   - npm run coverage
-  - npm run travis-deploy-once "npm run semantic-release"
+  - npx semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
