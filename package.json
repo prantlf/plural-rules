@@ -101,7 +101,7 @@
     "eslint-plugin-promise": "4.1.1",
     "eslint-plugin-standard": "4.0.0",
     "fast-glob": "2.2.7",
-    "fast-plural-rules": "0.0.2",
+    "fast-plural-rules": "0.0.3",
     "fs-extra": "8.0.1",
     "jasmine-core": "3.4.0",
     "jest": "24.8.0",
