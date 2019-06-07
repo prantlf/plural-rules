@@ -16,6 +16,8 @@ Evaluates locale-specific plural rules to identify the right plural form for a c
 * Generated from the official [CLDR plural rules] version 34. Cardinals for [almost 200 languages](./docs/languages.md#supported-languages) are supported.
 * Minimal interface for finding out the right [plural form](./docs/design.md#plural-forms) by evaluating [plural rules](./docs/design.md#plural-rules) for a specific [locale](./docs/design.md#locales). Looking up and formatting localizable strings is a task for internationalization libraries.
 
+If you are looking for a more lightweight and [better performing](https://github.com/prantlf/fast-plural-rules/blob/master/docs/speed.md#plural-form-lookup-speed) library using [Mozilla plural rules], see [fast-plural-rules].
+
 ### Table of Contents
 
 - [Synopsis](#synopsis)
@@ -86,3 +88,5 @@ Licensed under the MIT license.
 [NPM]: https://www.npmjs.com/
 [Yarn]: https://yarnpkg.com/
 [CLDR plural rules]: http://cldr.unicode.org/index/cldr-spec/plural-rules
+[Mozilla plural rules]: https://developer.mozilla.org/en-US/docs/Mozilla/Localization/Localization_and_Plurals#List_of_Plural_Rules
+[fast-plural-rules]: https://github.com/prantlf/fast-plural-rules
