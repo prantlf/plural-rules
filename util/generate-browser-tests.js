@@ -30,16 +30,21 @@ function readTest (file) {
     })
 }
 
+let counter = 0
+
 function formatModuleImport (input) {
   const match = importModuleExpression.exec(input)
   if (!match) {
     throw new Error('Statement requiring the code module not found.')
   }
-  const name = match[2]
+  const scriptName = match[2]
   const functionCodeLine = input.replace(importModuleExpression,
     `const $1 = window['pluralRules']`)
+  const scriptPath = counter++ % 2 === 0
+    ? '../../dist/' + scriptName + '.umd.min.js'
+    : '../../dist/' + scriptName + '.umd.js'
   const functionScriptElement = [
-    '<script src="../../dist/' + name + '.umd.js"></script>'
+    '<script src="' + scriptPath + '"></script>'
   ]
   return { functionCodeLine, functionScriptElement }
 }
