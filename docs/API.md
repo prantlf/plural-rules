@@ -34,7 +34,7 @@ import {
 Load the main module in the browser with plain JavaScript:
 
 ```html
-<script src="./node_modules/plural-rules/dist/index.umd.js"></script>
+<script src="./node_modules/plural-rules/dist/index.umd.min.js"></script>
 <script>
   (() => {
     const { getPluralFormForCardinal } = window.pluralRules
@@ -42,7 +42,7 @@ Load the main module in the browser with plain JavaScript:
 </script>
 ```
 
-You can also load a specific version from CDN, for example: https://unpkg.com/plural-rules@0.0.1/dist/index.umd.js.
+You can also load a specific version from CDN, for example: https://unpkg.com/plural-rules@0.1.0/dist/index.umd.min.js.
 
 ## Modules
 
@@ -55,7 +55,7 @@ Main package module. The most usually chosen module with the complete functional
 ```
 const { ... } = require('plural-rules')
 import { ... } from './node_modules/plural-rules/src/index.js'
-<script src="./node_modules/plural-rules/dist/index.umd.js"></script>
+<script src="./node_modules/plural-rules/dist/index.umd.min.js"></script>
 ```
 
 ### code
@@ -65,7 +65,7 @@ Offers the plural form lookup functionality, like the `index` module, but does n
 ```
 const { ... } = require('plural-rules/dist/code')
 import { ... } from './node_modules/plural-rules/src/code.js'
-<script src="./node_modules/plural-rules/dist/code.umd.js"></script>
+<script src="./node_modules/plural-rules/dist/code.umd.min.js"></script>
 ```
 
 ## Functions
@@ -80,7 +80,7 @@ The [locale](./design.md#locales) will be normalized for the plural rule lookup.
 getPluralFormForCardinal(localeOrRules: string|object, count: number): string
 ```
 
-Returns an identifier of the plural form using the specified locale (or plural rules) and the specified cardinal number (`count`).
+Returns an identifier of the plural form using the specified locale (or plural rules) and the specified cardinal number (`count`). If you call `getPluralFormForCardinal` many times for the same locale, consider obtaining a rule function for the specific locale by `getPluralRulesForCardinals` and call this function using the rules repeatedly.
 
 * `localeOrRules` - one of [supported language locales](./languages.md#supported-languages) or an object with [plural rules](./design.md#plural-rules) returned by [getPluralRulesForCardinals](#getpluralrulesforcardinals)
 * `count` - a cardinal representing an item count; an integer >= 0

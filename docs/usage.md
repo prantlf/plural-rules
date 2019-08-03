@@ -198,7 +198,7 @@ create-plural-data -pu en cs de hu ol skcs >plural-data.umd.js
 Custom plural data can be used if the module `code` is loaded instead of the default `index` module, which bundles support for all languages.
 
 ```html
-<script src="https://unpkg.com/plural-rules@0.0.1/dist/code.umd.js"></script>
+<script src="https://unpkg.com/plural-rules@0.1.0/dist/code.umd.min.js"></script>
 <script src=".../plural-data.umd.js"></script>
 <script>
   (() => {

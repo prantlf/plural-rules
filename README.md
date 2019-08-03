@@ -11,9 +11,9 @@
 
 Evaluates locale-specific plural rules to identify the right plural form for a cardinal number, which represents an item count. Internationalization libraries can utilize it to choose the right localized string.
 
-* Tiny code base - 1.89 kB, 1.22 KB minified, 0.57 KB gzipped. Do not pack unnecessary weight in your application.
-* Packed data - 23.0 kB, 15.3 kB minified, 2.83 kB gzipped. Half of the size of the original CLDR data.
-* Generated from the official [CLDR plural rules] version 34. Cardinals for [almost 200 languages](./docs/languages.md#supported-languages) are supported.
+* Tiny code base - 2.11 kB, 1.4 KB minified, 0.61 KB gzipped. Do not pack unnecessary weight in your application.
+* Packed data - 23.8 kB, 16 kB minified, 3 kB gzipped. Half of the size of the original CLDR data.
+* Generated from the official [CLDR plural rules] version 35.1. Cardinals for [almost 200 languages](./docs/languages.md#supported-languages) are supported.
 * Minimal interface for finding out the right [plural form](./docs/design.md#plural-forms) by evaluating [plural rules](./docs/design.md#plural-rules) for a specific [locale](./docs/design.md#locales). Looking up and formatting localizable strings is a task for internationalization libraries.
 
 If you are looking for a more lightweight and [better performing](https://github.com/prantlf/fast-plural-rules/blob/master/docs/speed.md#plural-form-lookup-speed) library using [Mozilla plural rules], see [fast-plural-rules].
@@ -43,11 +43,32 @@ getPluralFormForCardinal('cs', 1) // Returns "one";   "1 soubor"
 getPluralFormForCardinal('cs', 2) // Returns "few";   "2 soubory"
 getPluralFormForCardinal('cs', 5) // Returns "other"; "5 souborů"
 
-// English: "one"   - singular
-//          "other" - plural
-// Czech:   "one"   - singular
-//          "few"   - plural for 2-4 items
-//          "other" - plural for 5+ items
+// Returns a localized message for the specified locale and cardinal.
+localizeMessage('en', 'fileCount', 3) // Returns "3 files"
+localizeMessage('cs', 'fileCount', 3) // Returns "3 soubory"
+
+// Returns a localized message for the specified locale and cardinal.
+function localizeMessage (locale, messageKey, cardinal) {
+  const pluralForm = getPluralFormForCardinal(locale, cardinal)
+  const messageFormat = messages[locale][messageKey][pluralForm]
+  return messageFormat.replace('{0}', cardinal)
+}
+// Localized messages organized by locales and message keys.
+const messages = {
+  en: {
+    fileCount: {
+      one:   '{0} file', // singular
+      other: '{0} files' // plural
+    }
+  },
+  cs: {
+    fileCount: {
+      one:   '{0} soubor',  // singular
+      few:   '{0} soubory', // plural for 2-4 items
+      other: '{0} souborů'  // plural for 5 and more items
+    }
+  }
+}
 ```
 
 ## Installation and Getting Started
@@ -76,6 +97,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+* 2019-08-03   v0.1.0   Upgrade CLDR data to the version 35.1
 * 2018-11-05   v0.0.1   Initial release
 
 ## License
