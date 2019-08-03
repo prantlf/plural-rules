@@ -1,7 +1,7 @@
 'use strict'
 
 import parsePluralRule from 'cldrpluralruleparser'
-import { packPluralForms } from './data-packer'
+import { indexPluralForms, parsePluralForms } from './data-indexer'
 
 let rules = []
 let cardinals = {}
@@ -18,14 +18,18 @@ function getLanguage (locale) {
 function getPluralRulesForCardinals (locale) {
   locale = normalizeLocale(locale)
   let forms = cardinals[locale]
+  let language
   if (forms === undefined) {
-    const language = getLanguage(locale)
+    language = getLanguage(locale)
     if (language) {
       forms = cardinals[language]
     }
   }
   if (forms === undefined) {
-    throw new Error(`Unrecognized locale: "${locale}".`)
+    throw new Error(`Unrecognised locale: "${locale}".`)
+  } else if (typeof forms === 'string') {
+    forms = parsePluralForms(forms)
+    cardinals[language || locale] = forms
   }
   return forms
 }
@@ -43,7 +47,7 @@ function getPluralFormForCardinal (locale, count) {
 
 function setPluralFormsForCardinals (locale, forms) {
   locale = normalizeLocale(locale)
-  cardinals[locale] = packPluralForms(forms, rules)
+  cardinals[locale] = indexPluralForms(forms, rules)
 }
 
 function populatePluralData (data) {

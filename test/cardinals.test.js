@@ -1,6 +1,7 @@
 /* global it, expect */
 
 import data from '../src/data'
+import { parsePluralForms } from '../src/data-indexer'
 
 const { rules, cardinals } = data
 
@@ -10,7 +11,7 @@ it('are exported as an object', () => {
 
 it('all locales point to a valid rule index', () => {
   for (const locale in cardinals) {
-    const forms = cardinals[locale]
+    const forms = parsePluralForms(cardinals[locale])
     for (const form in forms) {
       const rule = forms[form]
       expect(typeof rules[rule]).toEqual('string')

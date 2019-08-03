@@ -1,7 +1,7 @@
 'use strict'
 
 const { outputFile: writeFile } = require('fs-extra')
-const originalPluralData = require('cldr-data/supplemental/plurals.json')
+const originalPluralData = require('cldr-data/supplemental/plurals')
 const { packPluralForms } = require('./data-packer')
 const { unpackPluralForms } = require('./data-unpacker')
 
