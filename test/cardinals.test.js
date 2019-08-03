@@ -9,9 +9,9 @@ it('are exported as an object', () => {
 })
 
 it('all locales point to a valid rule index', () => {
-  for (let locale in cardinals) {
+  for (const locale in cardinals) {
     const forms = cardinals[locale]
-    for (let form in forms) {
+    for (const form in forms) {
       const rule = forms[form]
       expect(typeof rules[rule]).toEqual('string')
     }

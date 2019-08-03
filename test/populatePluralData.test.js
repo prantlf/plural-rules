@@ -14,8 +14,8 @@ it('registers plural rules for a new locale', () => {
     ],
     cardinals: {
       test: {
-        'one': 0,
-        'other': 1
+        one: 0,
+        other: 1
       }
     }
   })

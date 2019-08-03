@@ -38,18 +38,25 @@ if (!locales.length && !commander.allLocales) {
 
 const {
   asModule, asCjsModule, asAmdModule, asUmdModule, umdName,
-	packed, includeVersion, outputFile
+  packed, includeVersion, outputFile
 } = commander
 createPluralData({
-  locales, asModule, asCjsModule, asAmdModule, asUmdModule, umdName,
-  packed, includeVersion, outputFile
+  locales,
+  asModule,
+  asCjsModule,
+  asAmdModule,
+  asUmdModule,
+  umdName,
+  packed,
+  includeVersion,
+  outputFile
 })
-.then(pluralData => {
-  if (!outputFile) {
-    console.log(pluralData)
-  }
-})
-.catch(error => {
-  console.error(error.message)
-  process.exitCode = 1
-})
+  .then(pluralData => {
+    if (!outputFile) {
+      console.log(pluralData)
+    }
+  })
+  .catch(error => {
+    console.error(error.message)
+    process.exitCode = 1
+  })

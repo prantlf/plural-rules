@@ -33,7 +33,7 @@ beforeAll(done => {
       puppeteer
         .launch({
           headless: true,
-          args: process.env.TRAVIS === 'true' ? [ '--no-sandbox' ] : []
+          args: process.env.TRAVIS === 'true' ? ['--no-sandbox'] : []
         })
         .then(result => {
           browser = result
@@ -53,7 +53,7 @@ afterAll(done => {
 })
 
 const tests = readdirSync(join(__dirname, 'browser'))
-for (let test of tests) {
+for (const test of tests) {
   it(`Execute ${test}`, done => {
     let result
     page
