@@ -12,7 +12,19 @@ export default [
       format: 'cjs'
     },
     plugins: [
-      babel({ exclude: 'node_modules/**' }),
+      babel({
+        exclude: 'node_modules/**',
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              targets: {
+                node: '6'
+              }
+            }
+          ]
+        ]
+      }),
       cleanup()
     ]
   },
@@ -23,7 +35,19 @@ export default [
       format: 'cjs'
     },
     plugins: [
-      babel({ exclude: 'node_modules/**' }),
+      babel({
+        exclude: 'node_modules/**',
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              targets: {
+                node: '6'
+              }
+            }
+          ]
+        ]
+      }),
       cleanup()
     ]
   },
