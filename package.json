@@ -56,8 +56,7 @@
   },
   "standard": {
     "ignore": [
-      "src/data.js",
-      "util/prune-language-plural-rules.js"
+      "src/data.js"
     ]
   },
   "jest": {

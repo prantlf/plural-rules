@@ -1,11 +1,24 @@
 /*
-<style>
-  html, body, table {
-    width: 100%;
-  }
-</style>
-<table class="dtf-table" border="1">
-<script src="prune-language-plural-rules.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Plural rules downloaded from CLDR and formatted in plain text.">
+  <title>Plural Rules</title>
+  <style>
+    html, body, table {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <table class="dtf-table" border="1">
+  ...
+  </table>
+  <script src="prune-language-plural-rules.js"></script>
+</body>
+</html>
 */
 ;(function () {
   'use strict'
@@ -13,17 +26,17 @@
   console.log('Deleting last column')
   const table = document.querySelector('table > tbody')
   let cells = table.querySelectorAll('tr > *:last-child')
-  for (let cell of cells) {
+  for (const cell of cells) {
     cell.parentNode.removeChild(cell)
   }
   console.log('Deleting one-but-last column')
   cells = table.querySelectorAll('tr > *:last-child')
-  for (let cell of cells) {
+  for (const cell of cells) {
     cell.parentNode.removeChild(cell)
   }
   console.log('Deleting one-but-last column')
   cells = table.querySelectorAll('tr > *:nth-child(3)')
-  for (let cell of cells) {
+  for (const cell of cells) {
     cell.parentNode.removeChild(cell)
   }
   console.log('Deleting ordinal and range data')
@@ -43,7 +56,7 @@
         cell.textContent === 'Norwegian' || // nb
         cell.textContent === 'Serbo-Croatian' || // sr_Latn
         cell.textContent === 'Tagalog') { // fil
-        // Yiddish ji <-- yi
+      // Yiddish ji <-- yi
       row.parentNode.removeChild(row)
       continue
     }
@@ -83,27 +96,27 @@
       }
       continue
     }
-    if (cell.textContent === 'iw' && name === 'Hebrew' ||
-        cell.textContent === 'in' && name === 'Indonesian' ||
-        cell.textContent === 'jw' && name === 'Javanese') {
-continue
-      console.log('  Deleting rogue row')
-      row.parentNode.removeChild(row)
-      let rowspan = start.getAttribute('rowspan')
-      rowspan = +rowspan - 1
-      if (rowspan > 1) {
-        start.setAttribute('rowspan', rowspan.toString())
-      } else {
-        start.removeAttribute('rowspan')
-      }
-      const code = start.parentNode.querySelector('*:nth-child(2)')
-      rowspan = code.getAttribute('rowspan')
-      rowspan = +rowspan - 1
-      if (rowspan > 1) {
-        code.setAttribute('rowspan', rowspan.toString())
-      } else {
-        code.removeAttribute('rowspan')
-      }
+    if ((cell.textContent === 'iw' && name === 'Hebrew') ||
+        (cell.textContent === 'in' && name === 'Indonesian') ||
+        (cell.textContent === 'jw' && name === 'Javanese')) {
+      continue
+      // console.log('  Deleting rogue row')
+      // row.parentNode.removeChild(row)
+      // let rowspan = start.getAttribute('rowspan')
+      // rowspan = +rowspan - 1
+      // if (rowspan > 1) {
+      //   start.setAttribute('rowspan', rowspan.toString())
+      // } else {
+      //   start.removeAttribute('rowspan')
+      // }
+      // const code = start.parentNode.querySelector('*:nth-child(2)')
+      // rowspan = code.getAttribute('rowspan')
+      // rowspan = +rowspan - 1
+      // if (rowspan > 1) {
+      //   code.setAttribute('rowspan', rowspan.toString())
+      // } else {
+      //   code.removeAttribute('rowspan')
+      // }
     }
   }
   console.log('Deleting row headers')

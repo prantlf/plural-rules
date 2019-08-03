@@ -1,6 +1,6 @@
 # Supported Languages
 
-Find your language below and learn, how many and what plural forms will be needed in localized messages with cardinals and what rules will decide the right plural form.
+Find your language below and learn, how many and what plural forms will be needed in localized messages with cardinals and what rules will decide the right plural form. The content of this page was extracted from the [original at CLDR].
 
 ```txt
 +------------------------------------------------------------------------+
@@ -1573,3 +1573,5 @@ Find your language below and learn, how many and what plural forms will be neede
 |                        |       |       | …                             |
 +------------------------------------------------------------------------+
 ```
+
+[original at CLDR]: http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#comparison
