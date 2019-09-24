@@ -17,7 +17,7 @@ const nonBrowserTests = [
 const importModuleExpression = /import ({[^}]+}) from '..\/src\/([^']+)'/
 
 function readTemplate () {
-  console.log(`Reading browser test template...`)
+  console.log('Reading browser test template...')
   return readFile(join(tests, 'browser.html'), { encoding: 'utf-8' })
     .then(template => template.split('\n'))
 }
@@ -39,7 +39,7 @@ function formatModuleImport (input) {
   }
   const scriptName = match[2]
   const functionCodeLine = input.replace(importModuleExpression,
-    `const $1 = window['pluralRules']`)
+    'const $1 = window[\'pluralRules\']')
   const scriptPath = counter++ % 2 === 0
     ? '../../dist/' + scriptName + '.umd.min.js'
     : '../../dist/' + scriptName + '.umd.js'
@@ -60,7 +60,7 @@ function formatPage (template, contentIndex, content) {
     .concat(template.slice(contentIndex))
 }
 
-console.log(`Deleting existing browser tests...`)
+console.log('Deleting existing browser tests...')
 let template
 rimraf(browserTests)
   .then(() => readTemplate())
