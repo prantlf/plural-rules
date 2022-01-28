@@ -1,8 +1,8 @@
-import babel from 'rollup-plugin-babel'
-import resolve from 'rollup-plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs'
+import { babel } from '@rollup/plugin-babel'
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
 import cleanup from 'rollup-plugin-cleanup'
-import { uglify } from 'rollup-plugin-uglify'
+import { terser } from 'rollup-plugin-terser'
 
 export default [
   {
@@ -11,15 +11,17 @@ export default [
       file: 'dist/index.js',
       format: 'cjs'
     },
+    external: 'cldrpluralruleparser',
     plugins: [
       babel({
         exclude: 'node_modules/**',
+        babelHelpers: 'bundled',
         presets: [
           [
             '@babel/preset-env',
             {
               targets: {
-                node: '6'
+                node: '14'
               }
             }
           ]
@@ -34,15 +36,17 @@ export default [
       file: 'dist/code.js',
       format: 'cjs'
     },
+    external: 'cldrpluralruleparser',
     plugins: [
       babel({
         exclude: 'node_modules/**',
+        babelHelpers: 'bundled',
         presets: [
           [
             '@babel/preset-env',
             {
               targets: {
-                node: '6'
+                node: '14'
               }
             }
           ]
@@ -60,7 +64,10 @@ export default [
       sourcemap: true
     },
     plugins: [
-      babel({ exclude: 'node_modules/**' }),
+      babel({
+        exclude: 'node_modules/**',
+        babelHelpers: 'bundled'
+      }),
       resolve(),
       commonjs(),
       cleanup()
@@ -75,10 +82,13 @@ export default [
       sourcemap: true
     },
     plugins: [
-      babel({ exclude: 'node_modules/**' }),
+      babel({
+        exclude: 'node_modules/**',
+        babelHelpers: 'bundled'
+      }),
       resolve(),
       commonjs(),
-      uglify()
+      terser()
     ]
   },
   {
@@ -90,7 +100,10 @@ export default [
       sourcemap: true
     },
     plugins: [
-      babel({ exclude: 'node_modules/**' }),
+      babel({
+        exclude: 'node_modules/**',
+        babelHelpers: 'bundled'
+      }),
       resolve(),
       commonjs(),
       cleanup()
@@ -105,10 +118,13 @@ export default [
       sourcemap: true
     },
     plugins: [
-      babel({ exclude: 'node_modules/**' }),
+      babel({
+        exclude: 'node_modules/**',
+        babelHelpers: 'bundled'
+      }),
       resolve(),
       commonjs(),
-      uglify()
+      terser()
     ]
   }
 ]
