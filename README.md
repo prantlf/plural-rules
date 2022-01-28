@@ -23,7 +23,6 @@ If you are looking for a smaller and [faster](https://github.com/prantlf/fast-pl
 - [Supported Languages](./docs/languages.md#supported-languages)
 - [API Reference](./docs/API.md#api-reference)
 - [Contributing](#contributing)
-- [Release History](#release-history)
 - [License](#license)
 
 ## Synopsis
