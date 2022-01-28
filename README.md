@@ -1,13 +1,9 @@
 # Plural Rules
-[![NPM version](https://badge.fury.io/js/plural-rules.png)](http://badge.fury.io/js/plural-rules)
-[![Build Status](https://travis-ci.org/prantlf/plural-rules.png)](https://travis-ci.org/prantlf/plural-rules)
-[![Coverage Status](https://coveralls.io/repos/github/prantlf/plural-rules/badge.svg?branch=master)](https://coveralls.io/github/prantlf/plural-rules?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9f1034029c0747a980cd49f64f16338b)](https://www.codacy.com/app/prantlf/plural-rules?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=prantlf/plural-rules&amp;utm_campaign=Badge_Grade)
-[![Dependency Status](https://david-dm.org/prantlf/plural-rules.svg)](https://david-dm.org/prantlf/plural-rules)
-[![devDependency Status](https://david-dm.org/prantlf/plural-rules/dev-status.svg)](https://david-dm.org/prantlf/plural-rules#info=devDependencies)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-[![NPM Downloads](https://nodei.co/npm/plural-rules.png?downloads=true&stars=true)](https://www.npmjs.com/package/plural-rules)
+[![Latest version](https://img.shields.io/npm/v/plural-rules)
+ ![Dependency status](https://img.shields.io/librariesio/release/npm/plural-rules)
+](https://www.npmjs.com/package/plural-rules)
+[![Coverage](https://codecov.io/gh/prantlf/plural-rules/branch/master/graph/badge.svg)](https://codecov.io/gh/prantlf/plural-rules)
 
 Evaluates locale-specific plural rules to identify the right plural form for a cardinal number, which represents an item count. Internationalization libraries can utilize it to choose the right localized string.
 
@@ -95,15 +91,9 @@ You can read more about the [module loading](./docs/API.md#loading) in other env
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.  Add unit tests for any new or changed functionality. Lint and test your code using Grunt.
 
-## Release History
-
-* 2019-08-03   v1.0.0   Decrease the size of the packed plural rules and forms
-* 2019-08-03   v0.1.0   Upgrade CLDR data to the version 35.1
-* 2018-11-05   v0.0.1   Initial release
-
 ## License
 
-Copyright (c) 2018-2019 Ferdinand Prantl
+Copyright (c) 2018-2022 Ferdinand Prantl
 
 Licensed under the MIT license.
 
