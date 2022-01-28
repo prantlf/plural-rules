@@ -9,7 +9,7 @@ Evaluates locale-specific plural rules to identify the right plural form for a c
 
 * Tiny code base - 2.52 kB, 1.57 KB minified, 0.67 KB gzipped. Do not pack unnecessary weight in your application. (Bundled code for the web browser is 11 kB, 4.77 kB minified, 1.79 kB gzipped.)
 * Packed data - 18.2 kB, 16 kB minified, 3 kB gzipped. A quarter of the size of the original CLDR data. (This size adds to the code size.)
-* Generated from the official [CLDR plural rules] version 35.1. Cardinals for [almost 200 languages](./docs/languages.md#supported-languages) are supported.
+* Generated from the official [CLDR plural rules] version 36.0. Cardinals for [almost 200 languages](./docs/languages.md#supported-languages) are supported.
 * Minimal interface for finding out the right [plural form](./docs/design.md#plural-forms) by evaluating [plural rules](./docs/design.md#plural-rules) for a specific [locale](./docs/design.md#locales). Looking up and formatting localizable strings is a task for internationalization libraries.
 
 If you are looking for a smaller and [faster](https://github.com/prantlf/fast-plural-rules/blob/master/docs/speed.md#plural-form-lookup-speed) library using [Mozilla plural rules], see [fast-plural-rules].
