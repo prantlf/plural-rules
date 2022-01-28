@@ -3,7 +3,8 @@ import {
   setPluralFormsForCardinals, populatePluralData
 } from '../src/code'
 
-declare function test (label: string, callback: Function)
+declare type testCallback = () => void
+declare function test (label: string, callback: testCallback)
 
 test('Type declarations for TypeScript', () => {
   populatePluralData({
@@ -13,8 +14,8 @@ test('Type declarations for TypeScript', () => {
     ],
     cardinals: {
       test: {
-        'one': 0,
-        'other': 1
+        one: 0,
+        other: 1
       }
     }
   })
@@ -22,7 +23,7 @@ test('Type declarations for TypeScript', () => {
   const rules = getPluralRulesForCardinals('test')
   getPluralFormForCardinal(rules, 1)
   setPluralFormsForCardinals('test', {
-    'one': 'i = 1 and v = 0 @integer 1',
+    one: 'i = 1 and v = 0 @integer 1',
     'pluralRule-count-other': ' @integer  0, 2~16, 100, … @decimal 0.0~1.5, 10.0, 100.0, …'
   })
 })

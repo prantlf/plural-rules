@@ -35,7 +35,8 @@ function getPluralRulesForCardinals (locale) {
 }
 
 function getPluralFormForCardinal (locale, count) {
-  const forms = typeof locale !== 'string' ? locale
+  const forms = typeof locale !== 'string'
+    ? locale
     : getPluralRulesForCardinals(locale)
   for (const form in forms) {
     const rule = forms[form]

@@ -1,4 +1,4 @@
-/* global jasmine, beforeAll, afterAll, it, expect */
+/* global beforeAll, afterAll, it, expect */
 
 const { join } = require('path')
 const { readdirSync } = require('fs')
@@ -13,20 +13,13 @@ let browser
 let page
 
 const customMatchers = {
-  toPass: function () {
-    return {
-      compare: function (result, message) {
-        return {
-          pass: result,
-          message: () => message
-        }
-      }
-    }
+  toPass: function (pass, message) {
+    return { pass, message }
   }
 }
 
 beforeAll(done => {
-  jasmine.addMatchers(customMatchers)
+  expect.extend(customMatchers)
   server = connect()
     .use(serve(join(__dirname, '..'), { etag: false }))
     .listen(port, () => {
