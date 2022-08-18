@@ -1,6 +1,6 @@
 /* global it, expect */
 
-import { getPluralFormForCardinal, populatePluralData } from '../src/code'
+import { getPluralFormForCardinal, populatePluralData } from '../src/code.js'
 
 it('is exported as a function', () => {
   expect(typeof populatePluralData === 'function').toBeTruthy()

@@ -20,9 +20,7 @@
 </body>
 </html>
 */
-;(function () {
-  'use strict'
-
+(function () {
   console.log('Deleting last column')
   const table = document.querySelector('table > tbody')
   let cells = table.querySelectorAll('tr > *:last-child')

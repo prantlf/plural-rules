@@ -1,7 +1,7 @@
-const createSuite = require('./createSuite')
-const { getPluralFormForCardinalByLocale } = require('fast-plural-rules')
-const { getPluralFormForCardinal } = require('../dist')
-const assert = require('assert')
+import createSuite from './createSuite.js'
+import { getPluralFormForCardinalByLocale } from 'fast-plural-rules'
+import { getPluralFormForCardinal } from 'plural-rules'
+import assert from 'assert'
 
 function simpleCoded () {
   assert(getPluralFormForCardinalByLocale('en', 1) === 0)

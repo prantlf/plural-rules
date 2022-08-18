@@ -1,7 +1,7 @@
 /* global it, expect */
 
-import data from '../src/data'
-import { parsePluralForms } from '../src/data-indexer'
+import data from '../src/data.js'
+import { parsePluralForms } from '../src/data-indexer.js'
 
 const { rules, cardinals } = data
 

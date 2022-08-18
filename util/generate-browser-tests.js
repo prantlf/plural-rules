@@ -1,12 +1,10 @@
-'use strict'
+import { mkdir, readFile, rm, writeFile } from 'fs/promises'
+import { join } from 'path'
+import glob from 'fast-glob'
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
 
-const { readFile, outputFile } = require('fs-extra')
-const { promisify } = require('es6-promisify')
-const { join } = require('path')
-const glob = require('fast-glob')
-let rimraf = require('rimraf')
-
-rimraf = promisify(rimraf)
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const tests = join(__dirname, '../test')
 const browserTests = join(tests, 'browser')
@@ -18,12 +16,12 @@ const importModuleExpression = /import ({[^}]+}) from '..\/src\/([^']+)'/
 
 function readTemplate () {
   console.log('Reading browser test template...')
-  return readFile(join(tests, 'browser.html'), { encoding: 'utf-8' })
+  return readFile(join(tests, 'browser.html'), 'utf8')
     .then(template => template.split('\n'))
 }
 
 function readTest (file) {
-  return readFile(join(tests, file), { encoding: 'utf-8' })
+  return readFile(join(tests, file), 'utf8')
     .then(content => {
       content = content.split('\n')
       return content.slice(2, content.length - 1)
@@ -61,30 +59,17 @@ function formatPage (template, contentIndex, content) {
 }
 
 console.log('Deleting existing browser tests...')
-let template
-rimraf(browserTests)
-  .then(() => readTemplate())
-  .then(result => {
-    template = result
-    return glob('*.test.js', { cwd: tests })
-  })
-  .then(files => {
-    const scriptIndex = template.indexOf('</head>')
-    files
-      .filter(file => !nonBrowserTests.includes(file))
-      .reduce((promise, file) => {
-        console.log(`Processing test ${file}...`)
-        return promise.then(() =>
-          readTest(file)
-            .then(content => {
-              content = formatPage(template, scriptIndex, content)
-              file = join(browserTests, file.substr(0, file.length - 2) + 'html')
-              return outputFile(file, content.join('\n'))
-            })
-        )
-      }, Promise.resolve())
-  })
-  .catch(error => {
-    console.error(error)
-    process.exitCode = 1
-  })
+await rm(browserTests, { recursive: true, force: true })
+await mkdir(browserTests, { recursive: true })
+const template = await readTemplate()
+const files = await glob('*.test.js', { cwd: tests })
+const scriptIndex = template.indexOf('</head>')
+await Promise.all(files
+  .filter(file => !nonBrowserTests.includes(file))
+  .map(async file => {
+    console.log(`Processing test ${file}...`)
+    let content = await readTest(file)
+    content = formatPage(template, scriptIndex, content)
+    file = join(browserTests, `${file.substring(0, file.length - 2)}html`)
+    await writeFile(file, content.join('\n'))
+  }))

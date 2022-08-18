@@ -1,7 +1,5 @@
-'use strict'
-
 import parsePluralRule from 'cldrpluralruleparser'
-import { indexPluralForms, parsePluralForms } from './data-indexer'
+import { indexPluralForms, parsePluralForms } from './data-indexer.js'
 
 let rules = []
 let cardinals = {}

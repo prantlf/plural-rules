@@ -1,5 +1,3 @@
-'use strict'
-
 // Input forms with rules:
 //   {
 //     "pluralRule-count-one": "i = 1 and v = 0 @integer 1",
@@ -79,4 +77,4 @@ function packPluralForms (forms, rules) {
   return stringifyForms(indexedForms)
 }
 
-exports.packPluralForms = packPluralForms
+export { packPluralForms }

@@ -1,9 +1,11 @@
-'use strict'
+import { createRequire } from 'module'
+import { readFileSync } from 'fs'
+import { writeFile } from 'fs/promises'
+import { packPluralForms } from './data-packer.js'
+import { unpackPluralForms } from './data-unpacker.js'
 
-const { outputFile: writeFile } = require('fs-extra')
-const originalPluralData = require('cldr-data/supplemental/plurals')
-const { packPluralForms } = require('./data-packer')
-const { unpackPluralForms } = require('./data-unpacker')
+const require = createRequire(import.meta.url)
+const originalPluralData = JSON.parse(readFileSync(require.resolve('cldr-data/supplemental/plurals.json'), 'utf8'))
 
 function normalizeLocale (locale) {
   return locale.toLowerCase().replace('_', '-')
@@ -51,7 +53,7 @@ function transformData (data, options) {
   return { version, rules, cardinals }
 }
 
-function formatES6Module (content) {
+function formatESModule (content) {
   return `export default ${content}`
 }
 
@@ -83,7 +85,7 @@ function createPluralData (options = {}) {
   const data = transformData(originalPluralData, options)
   let content = JSON.stringify(data, undefined, 2)
   if (asModule) {
-    content = formatES6Module(content)
+    content = formatESModule(content)
   } else if (asCjsModule) {
     content = formatCJSModule(content)
   } else if (asAmdModule) {
@@ -98,4 +100,4 @@ function createPluralData (options = {}) {
   return Promise.resolve(content)
 }
 
-exports.createPluralData = createPluralData
+export { createPluralData }

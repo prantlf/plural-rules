@@ -1,15 +1,12 @@
-'use strict'
+import { createPluralData } from './data-creator.js'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
 
-const { join } = require('path')
-const { createPluralData } = require('./data-creator')
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
-createPluralData({
+await createPluralData({
   asModule: true,
   includeVersion: true,
   packed: true,
   outputFile: join(__dirname, '../src/data.js')
 })
-  .catch(error => {
-    console.error(error)
-    process.exitCode = 1
-  })

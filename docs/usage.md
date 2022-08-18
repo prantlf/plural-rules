@@ -41,7 +41,8 @@ Have a look at the [list of plural rules and number of plural forms for locales 
 Language packs usually contain localized expressions, which are looked up by their keys. If an expression contains a parameter, for example a number placeholder "{fileCount}", only one text message is not enough to cover all grammar rules for different cardinals, which could occur in the parameter value. If expressions, which cover all grammar rules, are stored in an array, the function [`getPluralFormForCardinal`](./API.md#getpluralformforcardinal) will return the index of the right expression in the array, provided with the target locale and the cardinal value.
 
 ```js
-const { getPluralFormForCardinal } = require('plural-rules')
+import { getPluralFormForCardinal } from 'plural-rules'
+
 let locale
 
 localizePluralMessage('en', 'invalidFileCount', 1)
@@ -98,9 +99,9 @@ See the function [`getPluralFormForCardinal`](./API.md#getpluralformforcardinal)
 This scenario implements a similar interface for the localized message lookup like the previous [getting a localized message in the right plural form](#get-a-localized-message-in-the-right-plural-form). As a difference, it demonstrates how to obtain the plural rules and use them multiple times without always carrying the locale around.
 
 ```js
-const {
+import {
   getPluralRulesForCardinals, getPluralFormForCardinal
-} = require('plural-rules')
+} from 'plural-rules'
 
 setLocale('en')
 

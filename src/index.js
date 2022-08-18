@@ -1,10 +1,8 @@
-'use strict'
-
 import {
   getPluralRulesForCardinals, getPluralFormForCardinal,
   setPluralFormsForCardinals, populatePluralData
-} from './code'
-import pluralData from './data'
+} from './code.js'
+import pluralData from './data.js'
 
 populatePluralData(pluralData)
 

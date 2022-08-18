@@ -1,5 +1,3 @@
-'use strict'
-
 // Input string with the object serialized:
 //   "one:0,other:1"
 // Output forms, names pointing to array indexes of their rules:

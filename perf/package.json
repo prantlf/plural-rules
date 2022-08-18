@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "benchmark": "^2.1.4",
+    "fast-plural-rules": "^2.0.1",
+    "plural-rules": "link:.."
+  }
+}

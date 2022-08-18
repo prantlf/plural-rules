@@ -28,7 +28,7 @@ If you are looking for a smaller and [faster](https://github.com/prantlf/fast-pl
 ## Synopsis
 
 ```js
-const { getPluralFormForCardinal } = require('plural-rules')
+import { getPluralFormForCardinal } from 'plural-rules'
 
 // Returns index of the plural form for the specified locale and cardinal.
 getPluralFormForCardinal('en', 1) // Returns "one";   "1 file"
@@ -81,10 +81,10 @@ $ yarn add plural-rules
 Functions are exposed as named exports, for example:
 
 ```js
-const { getPluralFormForCardinal } = require('plural-rules')
+import { getPluralFormForCardinal } from 'plural-rules'
 ```
 
-You can read more about the [module loading](./docs/API.md#loading) in other environments, like with ES6 or in web browsers. [Usage scenarios](./docs/usage.md#usage-scenarios) demonstrate applications of this library in typical real-world situations. [Design concepts](./docs/design.md#design-concepts) explain the approach to the correct internationalization of messages with cardinals taken by this library. Translators will read about [plural rules for supported languages](./docs/languages.md#supported-languages) to be able to write the right plural forms to language packs. [Data genrator](#./API.md#data-generator) enables customizing the the amount of recognized languages and thus shrink the library size. Finally, the [API reference](./docs/API.md#api-reference) lists all functions with a description of their functionality.
+You can read more about the [module loading](./docs/API.md#loading) in other environments, like with ESM or in web browsers. [Usage scenarios](./docs/usage.md#usage-scenarios) demonstrate applications of this library in typical real-world situations. [Design concepts](./docs/design.md#design-concepts) explain the approach to the correct internationalization of messages with cardinals taken by this library. Translators will read about [plural rules for supported languages](./docs/languages.md#supported-languages) to be able to write the right plural forms to language packs. [Data genrator](#./API.md#data-generator) enables customizing the the amount of recognized languages and thus shrink the library size. Finally, the [API reference](./docs/API.md#api-reference) lists all functions with a description of their functionality.
 
 ## Contributing
 

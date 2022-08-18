@@ -1,6 +1,6 @@
 /* global it, expect */
 
-import data from '../src/data'
+import data from '../src/data.js'
 
 const { version } = data
 

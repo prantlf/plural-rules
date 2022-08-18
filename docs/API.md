@@ -23,12 +23,10 @@ Load the main module in an application using CommonJS modules:
 const { getPluralFormForCardinal } = require('plural-rules')
 ```
 
-Load the main module in an application using ES6 modules:
+Load the main module in an application using ES modules:
 
 ```js
-import {
-  getPluralFormForCardinal
-} from './node_modules/plural-rules/src/index.js'
+import { getPluralFormForCardinal } from 'plural-rules'
 ```
 
 Load the main module in the browser with plain JavaScript:
@@ -42,11 +40,23 @@ Load the main module in the browser with plain JavaScript:
 </script>
 ```
 
-You can also load a specific version from CDN, for example: https://unpkg.com/plural-rules@1.0.0/dist/index.umd.min.js.
+Load the main module in the browser with AMD:
+
+```html
+<script src="https://unpkg.com/alameda@1.4.0/alameda.js"></script>
+<script>
+  require(
+    ['./node_modules/plural-rules/dist/index.umd.min.js'],
+    ({ getPluralFormForCardinal }) => {
+    })
+</script>
+```
+
+You can also load a specific version from CDN, for example: https://unpkg.com/plural-rules@2.0.0/dist/index.umd.min.js.
 
 ## Modules
 
-Modules in the `src` directory require ES6 including the new module syntax, as available in Node.js 8 and newer. Modules in the `dist` directory require ES5 and follow the CommonJS standard for older Node.js releases. Files `dist/*.umd.js` require ES5, are minified and follow the UMD standard to work well in web browsers.
+Modules in the `src` directory require ESM including the new module syntax, as available in Node.js 8 and newer. Modules in the `dist` directory require ES5 and follow the CommonJS standard for older Node.js releases. Files `dist/*.umd.js` require ES5, are minified and follow the UMD standard to work well in web browsers.
 
 ### index
 
@@ -54,7 +64,7 @@ Main package module. The most usually chosen module with the complete functional
 
 ```
 const { ... } = require('plural-rules')
-import { ... } from './node_modules/plural-rules/src/index.js'
+import { ... } from 'plural-rules'
 <script src="./node_modules/plural-rules/dist/index.umd.min.js"></script>
 ```
 
@@ -63,8 +73,8 @@ import { ... } from './node_modules/plural-rules/src/index.js'
 Offers the plural form lookup functionality, like the `index` module, but does not include the plural data. You have to initialize the library with your own the time zone data by calling [populatePluralData](#populatepluraldata) before the first usage.
 
 ```
-const { ... } = require('plural-rules/dist/code')
-import { ... } from './node_modules/plural-rules/src/code.js'
+const { ... } = require('plural-rules/dist/code.cjs')
+import { ... } from 'plural-rules/dist/code.mjs'
 <script src="./node_modules/plural-rules/dist/code.umd.min.js"></script>
 ```
 
@@ -86,7 +96,7 @@ Returns an identifier of the plural form using the specified locale (or plural r
 * `count` - a cardinal representing an item count; an integer >= 0
 
 ```js
-const { getPluralFormForCardinal } = require('plural-rules')
+import { getPluralFormForCardinal } from 'plural-rules'
 
 getPluralFormForCardinal('en', 5)
 // Returns 1, which is a second plural form (plural) in Germanic languages.
@@ -105,9 +115,9 @@ Returns an object with plural rules function for the specified `locale`. The plu
 * `locale` - one of [supported language locales](./languages.md#supported-languages)
 
 ```js
-const {
+import {
   getPluralRulesForCardinals, getPluralFormForCardinal
-} = require('plural-rules')
+} from 'plural-rules'
 
 const pluralRules = getPluralRulesForCardinals('en')
 // Returns plural rules for English.
@@ -149,8 +159,8 @@ See the [list the supported languages](./languages.md#supported-languages) as an
 This function is not exported from the `index` module, because this module includes the complete plural data already.
 
 ```js
-const { populatePluralData, getPluralFormForCardinal } = require('plural-rules/dist/code')
-const data = require('./plural-data')
+import { populatePluralData, getPluralFormForCardinal } from 'plural-rules/dist/code.mjs'
+import data from './plural-data.js'
 
 populatePluralData(data) // Initialize the library
 
@@ -188,25 +198,22 @@ If you want to [limit the supported languages](./usage.md#limit-supported-langua
 Usage: create-plural-data [options] <locale> [<locale> ...]
 
 Options:
-
-  -V, --version             output the version number
-  -a, --all-locales         incudes all available locales
-  -c, --as-cjs-module       format the plural data as a CommonJS module
-  -d, --as-amd-module       format the plural data as an AMD module
-  -m, --as-module           format the plural data as an ES6 module
-  -n, --umd-name            UMD global export name, if not "pluralData"
-  -o, --output-file <file>  write the plural data to a file
-  -p, --packed              pack the plural rules in plural forms
-  -u, --as-umd-module       format the plural data as an UMD module
-  -v, --include-version     include version of the CLDR source
-  -h, --help                output usage information
-
+  -V|--version             output the version number
+  -a|--all-locales         incudes all available locales
+  -c|--as-cjs-module       format the plural data as a CommonJS module
+  -d|--as-amd-module       format the plural data as an AMD module
+  -m|--as-module           format the plural data as an ES module
+  -n|--umd-name            UMD global export name|if not "pluralData"
+  -o|--output-file <file>  write the plural data to a file
+  -p|--packed              pack the plural rules in plural forms
+  -u|--as-umd-module       format the plural data as an UMD module
+  -v|--include-version     include version of the CLDR source
+  -h|--help                output usage information
 
 Plural data are printed on the standard output as JSON by default.
 Packed plural data must be used as a single module; not for merging.
 
 Examples:
-
   $ create-pural-data cs
   $ create-plural-data -mpv -o custom-data.js en de cs pl hu ru
 ```

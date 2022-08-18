@@ -1,4 +1,6 @@
-const { Suite } = require('benchmark')
+import benchmark from 'benchmark'
+
+const { Suite } = benchmark
 
 function start () {
   this.run({ async: true })
@@ -20,4 +22,4 @@ function createSuite (description) {
     .on('error', ({ target }) => console.warn(target.error))
 }
 
-module.exports = createSuite
+export default createSuite

@@ -23,40 +23,38 @@
     "url": "https://github.com/prantlf/plural-rules/issues"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=14.8"
+  },
+  "type": "module",
+  "module": "dist/index.mjs",
+  "main": "dist/index.cjs",
+  "browser": "dist/index.umd.min.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "import": "./dist/index.mjs"
   },
   "bin": {
-    "create-plural-data": "./bin/create-plural-data"
+    "create-plural-data": "./bin/create-plural-data.js"
   },
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
   "files": [
     "bin",
     "dist",
-    "src",
-    "util"
+    "lib/index.d.ts",
+    "util/data-creator.js",
+    "util/data-packer.js",
+    "util/data-unpacker.js"
   ],
   "scripts": {
-    "prepare": "npm run build",
-    "lint": "run-s lint:js lint:ts",
-    "lint:fix": "standard --verbose --fix bin/create-plural-data perf/*.js src/*.js test/*.js util/*.js",
-    "lint:js": "standard --verbose bin/create-plural-data perf/*.js src/*.js test/*.js util/*.js",
-    "lint:ts": "eslint -c .eslintrc.ts.yml src/*.ts test/*.ts",
+    "prepare": "node util/wrap-data && rollup -c",
+    "build": "rollup -c",
     "generate": "node util/wrap-data",
-    "generate:browser-tests": "node util/generate-browser-tests",
-    "compile": "rollup -c",
-    "copy:typings": "cpy src/*.d.ts dist",
-    "build": "run-s lint generate compile copy:typings",
-    "compile:tests": "tsc --lib es6 test/typings.test.ts",
-    "check": "jest --testPathIgnorePatterns \"browser.test.js\" --collectCoverage",
-    "check:browser": "jest --testPathPattern browser.test.js",
-    "benchmark": "node perf",
-    "test": "run-s compile:tests check generate:browser-tests check:browser"
-  },
-  "standard": {
-    "ignore": [
-      "src/data.js"
-    ]
+    "lint": "denolint && tsc --noEmit test/types.test.ts",
+    "check": "node test/cjs.cjs && node --experimental-vm-modules node_modules/jest/bin/jest --testPathIgnorePatterns \"browser.test.js\" --collectCoverage",
+    "check:browser": "node --experimental-vm-modules node_modules/jest/bin/jest --testPathPattern browser.test.js",
+    "pretest": "npm run lint && node util/generate-browser-tests",
+    "test": "npm run lint && npm run check && npm run check:browser",
+    "start": "python3 -m http.server"
   },
   "jest": {
     "roots": [
@@ -81,43 +79,44 @@
       }
     }
   },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/github",
+        {
+          "failComment": false
+        }
+      ],
+      "@semantic-release/git"
+    ]
+  },
+  "dependencies": {
+    "cldrpluralruleparser": "^1.4.0"
+  },
   "devDependencies": {
-    "@babel/core": "7.16.12",
-    "@babel/preset-env": "7.16.11",
-    "@rollup/plugin-babel": "5.3.0",
-    "@rollup/plugin-commonjs": "21.0.1",
-    "@rollup/plugin-node-resolve": "13.1.3",
-    "@typescript-eslint/eslint-plugin": "^5.10.1",
-    "@typescript-eslint/parser": "^5.10.1",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "27.4.6",
-    "benchmark": "2.1.4",
-    "cldr-data": "36.0.0",
-    "cldrpluralruleparser": "1.4.0",
-    "connect": "3.7.0",
-    "cpy-cli": "3.1.1",
-    "es6-promisify": "7.0.0",
-    "eslint": "8.7.0",
-    "eslint-config-standard": "16.0.3",
-    "eslint-plugin-import": "2.25.4",
-    "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-promise": "6.0.0",
-    "eslint-plugin-standard": "4.1.0",
-    "fast-glob": "3.2.11",
-    "fast-plural-rules": "1.0.2",
-    "fs-extra": "10.0.0",
-    "jasmine-core": "4.0.0",
-    "jest": "27.4.7",
-    "npm-run-all": "4.1.5",
-    "puppeteer": "13.1.2",
-    "regenerator-runtime": "0.13.9",
-    "rimraf": "3.0.2",
-    "rollup": "2.66.1",
-    "rollup-plugin-cleanup": "3.2.1",
-    "rollup-plugin-terser": "^7.0.2",
-    "serve-static": "1.14.2",
-    "standard": "16.0.4",
-    "typescript": "4.5.5"
+    "@node-rs/deno-lint": "^1.14.0",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "cldr-data": "^36.0.1",
+    "connect": "^3.7.0",
+    "fast-glob": "^3.2.11",
+    "fast-plural-rules": "^2.0.1",
+    "jasmine-core": "^4.3.0",
+    "jest": "^28.1.3",
+    "jest-expect-message": "^1.0.2",
+    "plural-rules": "link:",
+    "puppeteer": "^16.1.1",
+    "rollup": "^2.78.0",
+    "rollup-plugin-cleanup": "^3.2.1",
+    "rollup-plugin-swc-minify": "^1.0.4",
+    "serve-static": "^1.15.0",
+    "typescript": "^4.7.4"
   },
   "keywords": [
     "plural-rules",
