@@ -13,6 +13,8 @@ This library contains pure functions to get [plural forms](./design.md#plural-fo
   - [getPluralRulesForCardinals](#getpluralrulesforcardinals)
   - [populatePluralData](#populatepluraldata)
   - [setPluralFormsForCardinals](#setpluralformsforcardinals)
+  - [getSupportedLocales](#getsupportedlocales)
+  - [getPluralFormsForLocale](#getpluralformsforlocale)
 - [Data Generator](#data-generator)
 
 ## Loading
@@ -186,6 +188,42 @@ setPluralFormsForCardinals('cs', {
   few:   'i = 2..4 and v = 0 @integer 2~4',
   other: '@integer 0, 5~19, 100, 1000, 10000, 100000, 1000000, …'
 })
+```
+
+The [locale](./design.md#locales) will be normalized for the plural rules lookup by converting it to lower-case and using a hyphen as a separator, if the country is present and separated by an underscore.
+
+### getSupportedLocales
+
+```
+getSupportedLocales(): string[]
+```
+
+Returns an array of [locales supported by this library]](./languages.md#supported-languages). You can use it to check programmatically if your locale is suppored. The `getPluralFormsForLocale` might be more efficient, though.
+
+```js
+import { getSupportedLocales } from 'plural-rules'
+
+const supportedLocales = getSupportedLocales()
+
+console.log(supportedLocales.length, supportedLocales.includes['cs'))
+// Prints "211 true".
+```
+
+The [locale](./design.md#locales) will be normalized for the plural rules lookup by converting it to lower-case and using a hyphen as a separator, if the country is present and separated by an underscore.
+
+### getPluralFormsForLocale
+
+```
+getPluralFormsForLocale(locale: string): string[]
+```
+
+Returns the plural forms needed to cover the specified `locale`. [Plural form names](./languages.md#supported-languages) returned by `getPluralFormForCardinal` and other methods will be always included in the returned returned array.
+
+```js
+import { getPluralFormsForLocale } from 'plural-rules'
+
+getPluralFormsForLocale('cs')
+// Returns ["one", "few", "other"].
 ```
 
 The [locale](./design.md#locales) will be normalized for the plural rules lookup by converting it to lower-case and using a hyphen as a separator, if the country is present and separated by an underscore.

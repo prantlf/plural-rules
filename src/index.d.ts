@@ -6,12 +6,11 @@ interface PluralForms {
   [ key: string ]: string
 }
 
-declare function getPluralRulesForCardinals (locale: string): PluralRules
-declare function getPluralFormForCardinal (localeOrRules: string | PluralRules, count: number): string
-declare function setPluralFormsForCardinals (locale: string, forms: PluralForms): void
+export function getPluralRulesForCardinals (locale: string): PluralRules
+export function getPluralFormForCardinal (localeOrRules: string | PluralRules, count: number): string
+export function setPluralFormsForCardinals (locale: string, forms: PluralForms): void
 
-export {
-  getPluralRulesForCardinals, getPluralFormForCardinal, setPluralFormsForCardinals
-}
+export function getSupportedLocales(): string[]
+export function getPluralFormsForLocale(locale: string): string[]
 
 export as namespace pluralRules

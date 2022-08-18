@@ -15,14 +15,12 @@ interface PluralData {
   cardinals: PluralLocales
 }
 
-declare function getPluralRulesForCardinals (locale: string): PluralRules
-declare function getPluralFormForCardinal (localeOrRules: string | PluralRules, count: number): string
-declare function setPluralFormsForCardinals (locale: string, forms: PluralForms): void
-declare function populatePluralData (data: PluralData): void
+export function getPluralRulesForCardinals (locale: string): PluralRules
+export function getPluralFormForCardinal (localeOrRules: string | PluralRules, count: number): string
+export function setPluralFormsForCardinals (locale: string, forms: PluralForms): void
+export function populatePluralData (data: PluralData): void
 
-export {
-  getPluralRulesForCardinals, getPluralFormForCardinal,
-  setPluralFormsForCardinals, populatePluralData
-}
+export function getSupportedLocales(): string[]
+export function getPluralFormsForLocale(locale: string): string[]
 
 export as namespace pluralRules

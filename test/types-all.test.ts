@@ -1,14 +1,26 @@
 import {
   getPluralRulesForCardinals, getPluralFormForCardinal,
-  setPluralFormsForCardinals,
+  setPluralFormsForCardinals, populatePluralData,
   getSupportedLocales, getPluralFormsForLocale,
   PluralRules
-} from 'plural-rules'
+} from '../src/code'
 
 declare type testCallback = () => void
 declare function test (label: string, callback: testCallback)
 
 test('Type declarations for TypeScript', () => {
+  populatePluralData({
+    rules: [
+      'i = 1 and v = 0 @integer 1',
+      '@integer 0, 2~16, 100, … @decimal 0.0~1.5, 10.0, 100.0, …'
+    ],
+    cardinals: {
+      test: {
+        one: 0,
+        other: 1
+      }
+    }
+  })
   let _pluralForm: string
   _pluralForm = getPluralFormForCardinal('test', 1)
   const rules: PluralRules = getPluralRulesForCardinals('test')

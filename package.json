@@ -29,7 +29,7 @@
   "module": "dist/index.mjs",
   "main": "dist/index.cjs",
   "browser": "dist/index.umd.min.js",
-  "types": "lib/index.d.ts",
+  "types": "src/index.d.ts",
   "exports": {
     "require": "./dist/index.cjs",
     "import": "./dist/index.mjs"
@@ -40,7 +40,8 @@
   "files": [
     "bin",
     "dist",
-    "lib/index.d.ts",
+    "src/code.d.ts",
+    "src/index.d.ts",
     "util/data-creator.js",
     "util/data-packer.js",
     "util/data-unpacker.js"
@@ -49,7 +50,7 @@
     "prepare": "node util/wrap-data && rollup -c",
     "build": "rollup -c",
     "generate": "node util/wrap-data",
-    "lint": "denolint && tsc --noEmit test/types.test.ts",
+    "lint": "denolint && tsc --noEmit test/types.test.ts test/types-all.test.ts",
     "check": "node test/cjs.cjs && node --experimental-vm-modules node_modules/jest/bin/jest --testPathIgnorePatterns \"browser.test.js\" --collectCoverage",
     "check:browser": "node --experimental-vm-modules node_modules/jest/bin/jest --testPathPattern browser.test.js",
     "pretest": "npm run lint && node util/generate-browser-tests",

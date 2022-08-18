@@ -54,7 +54,23 @@ function populatePluralData (data) {
   cardinals = data.cardinals
 }
 
+let supportedLocales
+
+function getSupportedLocales() {
+  if (!supportedLocales) supportedLocales = Object.keys(cardinals)
+  return supportedLocales
+}
+
+function getPluralFormsForLocale(locale) {
+  const cardinal = cardinals[locale]
+  if (cardinal === undefined) return
+  return cardinal
+    .split(',')
+    .map(form => form.substring(0, form.indexOf(':')))
+}
+
 export {
   getPluralRulesForCardinals, getPluralFormForCardinal,
-  setPluralFormsForCardinals, populatePluralData
+  setPluralFormsForCardinals, populatePluralData,
+  getSupportedLocales, getPluralFormsForLocale
 }

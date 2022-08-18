@@ -34,7 +34,8 @@ Translators need to know, how many and what plural forms the target language nee
 }
 ```
 
-Have a look at the [list of plural rules and number of plural forms for locales supported by this library](./languages.md#supported-languages).
+Have a look at the [list of plural rules and number of plural forms for locales supported by this library](./languages.md#supported-languages).  The proper plural form names covering a particular `locale` can be checked pro
+grammatically by [`getPluralFormsForLocale`](./API.md#getpluralformsforlocale).
 
 ## Get a localized message in the right plural form
 

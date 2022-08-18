@@ -12,7 +12,7 @@ const nonBrowserTests = [
   'browser.test.js', 'cardinals.test.js', 'rules.test.js', 'typings.test.js',
   'version.test.js'
 ]
-const importModuleExpression = /import ({[^}]+}) from '..\/src\/([^']+)'/
+const importModuleExpression = /import ({[^}]+}) from '..\/src\/([^']+)\.js'/
 
 function readTemplate () {
   console.log('Reading browser test template...')

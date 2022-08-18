@@ -62,7 +62,7 @@ Plural forms are identified by their names standardized by [CLDR plural rules]:
 | many  | Optional  | For multiple items, usually many.                      |
 | other | Mandatory | For numbers not covered by other rules.                |
 
-The count and names of plural forms depend on the [language](./languages.md#supported-languages). All plural forms of an expression are usually stored with a lookup key [*language packs*](#language-packs).
+The count and names of plural forms depend on the [language](./languages.md#supported-languages). All plural forms of an expression are usually stored with a lookup key [*language packs*](#language-packs). The list of plural form names covering a particular `locale` can be obtained by [`getPluralFormsForLocale`](./API.md#getpluralformsforlocale).
 
 ## Plural Rules
 
@@ -94,6 +94,8 @@ The locale is an identifier referring to a *language* and if there is a dialect 
 Tha language is specified using a two-letter code from [ISO 369](https://en.wikipedia.org/wiki/ISO_639). The optional country is specified using a two-letter code from [ISO 3166](https://cs.wikipedia.org/wiki/ISO_3166-1). If there is no two-letter code available, three letter codes may be used.
 
 The locale is handled case-insensitively. Before it is used for the plural rule lookup, it is "normalized". It is converted to lower-case and if it consists of both language and country paths separated by an underscore, the separator is replaced by a hyphen. For example: `pt_BR ==> pt-br`.
+
+The list of supported locales can be obtained by [`getSupportedLocales`](./API.md#getsupportedlocales).
 
 ## Language Packs
 
