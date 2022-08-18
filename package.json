@@ -1,6 +1,6 @@
 {
   "name": "plural-rules",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Evaluates plural rules, so that localization libraries can choose the right plural form.",
   "author": {
     "name": "Ferdinand Prantl",

@@ -1,3 +1,19 @@
+# [2.0.0](https://github.com/prantlf/plural-rules/compare/v1.0.2...v2.0.0) (2022-08-18)
+
+
+### Features
+
+* API for checking supported locales and plural forms ([0b8fadc](https://github.com/prantlf/plural-rules/commit/0b8fadcb53ff50b5c1b42c511e26623935adca31))
+* Declare CJS, UMD and ES exports in package.json ([8beef35](https://github.com/prantlf/plural-rules/commit/8beef354d140fda3c5d2fe93b0b65ac7847d364b))
+
+
+### BREAKING CHANGES
+
+* Newer Node.js required, different command-line parsing, renamed CJS exports.
+* Node.js 14.8 or newer is required for the `create-plural-data` script. Also supports `type`, `module`, `types` and `exports`. The sources of the library didn't change, which means that the exported modules should still work in Node.js 6 and newer, but the're no tests proving that.
+* Command-line argument parsing done by a custom code instead of using `commander`. Boolean arguments cannot be joined to groups like `-mpv`. They have to be passed separately, for example: `-m -p -v`. Also, the command-line script requires Node.js with the ESM support, which means >= 14.8.
+* CJS modules in the `dist` directory end with the file extension `.cjs` instead of `.js`. (ES modules end with `.mjs`.) Usually imported main exports are not affected, because they are imported in both CJS and ES modules using the package name.
+
 ## [1.0.2](https://github.com/prantlf/plural-rules/compare/v1.0.1...v1.0.2) (2022-01-28)
 
 ### Bug Fixes
