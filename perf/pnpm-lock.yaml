@@ -2,12 +2,12 @@ lockfileVersion: 5.4
 
 specifiers:
   benchmark: ^2.1.4
-  fast-plural-rules: ^2.0.1
+  fast-plural-rules: ^2.0.2
   plural-rules: link:..
 
 devDependencies:
   benchmark: 2.1.4
-  fast-plural-rules: 2.0.1
+  fast-plural-rules: 2.0.2
   plural-rules: link:..
 
 packages:
@@ -19,8 +19,8 @@ packages:
       platform: 1.3.6
     dev: true
 
-  /fast-plural-rules/2.0.1:
-    resolution: {integrity: sha512-p3wyhYbI89uMY07VoG1pIEQARbpFuAb/BbmczJRqg6z4dkK0k6QaMyvOe07V+9dAhkvthYGKZwQK2PgQ1cy63Q==}
+  /fast-plural-rules/2.0.2:
+    resolution: {integrity: sha512-cUh0k6Os/Wdh/uXe0ahp/ZFVQgy+WkTh8fubHs/2M+NWR4xEJrFUhulU4JCrwdlEUNh/2fN5Yv09sCdm/3dtsQ==}
     engines: {node: '>=14.8'}
     dev: true
 

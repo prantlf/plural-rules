@@ -107,7 +107,6 @@
     "cldr-data": "^36.0.1",
     "connect": "^3.7.0",
     "fast-glob": "^3.2.11",
-    "fast-plural-rules": "^2.0.1",
     "jasmine-core": "^4.3.0",
     "jest": "^28.1.3",
     "jest-expect-message": "^1.0.2",

@@ -3,7 +3,7 @@
   "type": "module",
   "devDependencies": {
     "benchmark": "^2.1.4",
-    "fast-plural-rules": "^2.0.1",
+    "fast-plural-rules": "^2.0.2",
     "plural-rules": "link:.."
   }
 }
