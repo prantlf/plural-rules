@@ -20,6 +20,9 @@ Options:
   -p|--packed              pack the plural rules in plural forms
   -u|--as-umd-module       format the plural data as an UMD module
   -v|--include-version     include version of the CLDR source
+  -V|--version             print version numberA and exit
+  -h|--help                print usage instructions and exit
+
 
 Plural data are printed on the standard output as JSON by default.
 Packed plural data must be used as a single module; not for merging.
