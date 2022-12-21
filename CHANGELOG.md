@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/prantlf/plural-rules/compare/v2.0.0...v2.0.1) (2022-12-21)
+
+
+### Bug Fixes
+
+* Complete the command-line help ([83ffb85](https://github.com/prantlf/plural-rules/commit/83ffb858ddd64c9ae7911c46771d71d7d0906504))
+
 # [2.0.0](https://github.com/prantlf/plural-rules/compare/v1.0.2...v2.0.0) (2022-08-18)
 
 
